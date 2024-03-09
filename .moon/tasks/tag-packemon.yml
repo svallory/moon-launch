@@ -1,0 +1,43 @@
+$schema: "https://moonrepo.dev/schemas/tasks.json"
+
+extends: "https://raw.githubusercontent.com/moonrepo/moon-configs/master/javascript/packemon/tasks.yml"
+
+fileGroups:
+  packemon:
+    - 'src/**/*'
+    - '.packemon.*'
+    - 'package.json'
+    - 'tsconfig.*.json'
+    - '/package.json'
+    - '/packemon.config.*'
+    - '/tsconfig.*.json'
+  sources: []
+  tests:
+    - 'tests/**/*'
+
+tasks:
+  clean:
+    description: Clean build artifacts from a package
+    command: packemon clean
+
+  dev:
+    description: Watch local files for changes and rebuild
+    command: packemon watch
+
+  build: 
+    description: Build (for development) a standardized package for distribution
+    command: 'packemon build --addEngines --addFiles --addExports --declaration'
+    inputs:
+      - '@group(packemon)'
+      - '@group(sources)'
+
+  pack:
+    description: Clean, build, and validate a package for distribution
+    command: 'packemon pack --addEngines --addFiles --addExports --declaration'
+    inputs:
+      - '@group(packemon)'
+      - '@group(sources)'
+
+  validate:
+    command: packemon validate
+    description: Validate package metadata and configuration

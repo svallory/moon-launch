@@ -1,0 +1,39 @@
+---
+skip: {{ "prettier" not in tags }}
+---
+$schema: "https://moonrepo.dev/schemas/tasks.json"
+
+tasks:
+  # https://moonrepo.dev/docs/guides/examples/prettier
+  prettier:
+    command:
+      - "prettier"
+      - "--ignore-path"
+      - "@in(0)"
+      - "--check"
+      - "."
+    inputs:
+      - "/.prettierignore"
+      - "/prettier.config.js"
+      - "@group(app)"
+      - "@globs(sources)"
+      - "@globs(tests)"
+      - "@globs(configs)"
+      - "**/*.{md,mdx}"
+      
+  prettier-write:
+    command:
+      - "prettier"
+      - "--ignore-path"
+      - "@in(0)"
+      - "--write"
+      - "."
+    inputs:
+      - "/.prettierignore"
+      - "/prettier.config.js"
+      - "@group(app)"
+      - "@globs(sources)"
+      - "@globs(tests)"
+      - "@globs(configs)"
+      - "**/*.{md,mdx}"
+    local: true

@@ -1,0 +1,17 @@
+# https://moonrepo.dev/docs/config/workspace
+$schema: 'https://moonrepo.dev/schemas/workspace.json'
+
+# Require a specific version of moon while running commands, otherwise fail.
+versionConstraint: '>=1.22.0'
+
+# Extend and inherit an external configuration file. Must be a valid HTTPS URL or file system path.
+# extends: './shared/workspace.yml'
+
+projects:
+  root: '.'
+
+vcs:
+  syncHooks: true
+  hooks:
+    pre-commit:
+      - 'moon run :lint --affected'

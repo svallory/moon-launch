@@ -1,0 +1,39 @@
+{
+  "banners": [
+    {
+      "height": 34,
+      "width": 100,
+      "path": "banners/banner-100.ascii"
+    },
+    {
+      "height": 41,
+      "width": 120,
+      "path": "banners/banner-120.ascii"
+    },
+    {
+      "height": 48,
+      "width": 140,
+      "path": "banners/banner-140.ascii"
+    },
+    {
+      "height": 54,
+      "width": 160,
+      "path": "banners/banner-160.ascii"
+    },
+    {
+      "height": 68,
+      "width": 200,
+      "path": "banners/banner-200.ascii"
+    },
+    {
+      "height": 21,
+      "width": 60,
+      "path": "banners/banner-60.ascii"
+    },
+    {
+      "height": 28,
+      "width": 80,
+      "path": "banners/banner-80.ascii"
+    }
+  ]
+}

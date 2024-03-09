@@ -1,0 +1,25 @@
+---
+skip: {{ "library" not in projectTypes }}
+---
+$schema: 'https://moonrepo.dev/schemas/tasks.json'
+
+tasks:
+  # https://moonrepo.dev/docs/guides/examples/packemon
+  build:
+    command:
+      - 'packemon'
+      - 'pack'
+      - '--addEngines'
+      - '--addExports'
+      - '--declaration'
+    inputs:
+      - '@globs(sources)'
+      - 'package.json'
+      - 'tsconfig.*.json'
+
+    # Set the output formats
+    # Options: esm, cjs, lib
+    outputs:
+    {% for output in outputs
+    %}  - {{output}}
+    {% endfor %}

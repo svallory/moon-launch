@@ -1,0 +1,20 @@
+---
+skip: {{ "jest" not in tags }}
+---
+$schema: "https://moonrepo.dev/schemas/tasks.json"
+
+implicitDeps:
+  - "^:build"
+
+tasks:
+  # https://moonrepo.dev/docs/guides/examples/jest
+  test:
+    command:
+      - "jest"
+      - "--passWithNoTests"
+      - "--preset"
+      - "jest-preset-moon"
+    inputs:
+      - "@globs(sources)"
+      - "@globs(tests)"
+      - "jest.config.*"

@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "./tsconfig.options.json"
+    "tsconfig-moon/tsconfig.json",
+  ],
+  "compilerOptions": {
+    "rootDir": "."
+  },
+  "files": [],
+  "include": [
+    "src/**/*",
+    "src/**/*.json",
+    "tests/**/*",
+    "types/**/*"
+  ]
+}

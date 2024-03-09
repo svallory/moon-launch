@@ -1,0 +1,21 @@
+// https://www.npmjs.com/package/tsconfig-moon
+{
+  "extends": "./tsconfig.options.json",
+  "files": [],
+  "compilerOptions": {
+    "noEmit": true,
+    "declaration": false,
+    "declarationMap": false,
+  },
+  "include": [
+    "src/**/*",
+    "src/**/*.json",
+    "tests/**/*",
+    "types/**/*"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.lib.json"
+    }
+  ]
+}

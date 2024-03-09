@@ -1,0 +1,19 @@
+$schema: https://moonrepo.dev/schemas/project.json
+
+type: 'tool'
+language: 'typescript'
+
+project:
+  name: 'moon-launch'
+  description: 'Quickly create new moon monorepos'
+  channel: '#moon'
+  maintainers: ['svallory']
+
+fileGroups:
+  sources:
+    - 'src/**/*'
+    - 'types/**/*'
+
+tags:
+  - packemon
+  - vitest

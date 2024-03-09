@@ -1,0 +1,25 @@
+---
+skip: {{ "storybook" not in tags }}
+---
+$schema: 'https://moonrepo.dev/schemas/tasks.json'
+
+fileGroups:
+  storybook:
+    - 'src/**/*'
+    - 'stories/**/*'
+    - 'tests/**/*'
+    - '.storybook/**/*'
+
+tasks:
+  buildStorybook:
+    command: 'build-storybook --output-dir @out(0)'
+    inputs:
+      - '@group(storybook)'
+    outputs:
+      - 'build'
+
+  storybook:
+    local: true
+    command: 'start-storybook'
+    inputs:
+      - '@group(storybook)'

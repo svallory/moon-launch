@@ -1,0 +1,18 @@
+---
+skip: {{ "typescript" not in languages }}
+---
+$schema: "https://moonrepo.dev/schemas/tasks.json"
+
+tasks:
+  # https://moonrepo.dev/docs/guides/examples/typescript
+  typecheck:
+    command:
+      - "tsc"
+      - "--build"
+    inputs:
+      - "@group(app)"
+      - "@globs(sources)"
+      - "@globs(tests)"
+      - "tsconfig.json"
+      - "tsconfig.*.json"
+      - "/tsconfig.options.json"

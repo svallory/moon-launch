@@ -1,0 +1,28 @@
+// https://www.npmjs.com/package/tsconfig-moon
+{
+  "extends": "tsconfig-moon/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "composite": true,
+    // output .d.ts declaration files for consumers
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "importHelpers": true,
+    "incremental": true,
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "noEmit": false,
+    "noEmitOnError": true,
+    "outDir": "./lib",
+    "resolveJsonModule": true,
+    // match output dir to input dir. e.g. dist/index instead of dist/src/index
+    "rootDir": "./src",
+    // significant perf increase by skipping checking .d.ts files, particularly those in node_modules. Recommended by TS
+    "skipLibCheck": true,
+    // output .js.map sourcemap files for consumers (true in moon)
+    "sourceMap": true
+  }
+}
