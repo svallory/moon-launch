@@ -1,14 +1,13 @@
-#!/usr/bin/env node
 
-const fs = require('fs').promises;
-const path = require('path');
+const fs = require('node:fs').promises;
+const path = require('node:path');
 
 const ROOT = path.join(__dirname, '..');
 
 // Function to strip ANSI escape codes
 const stripAnsi = (string) => {
 	const ansiEscapeCodes =
-		/[\u001B\u009B][[\]()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g;
+		/[\u001B\u009B][#();?[\]]*(?:\d{1,4}(?:;\d{0,4})*)?[\d<=>A-ORZcf-nqry]/g;
 	return string.replace(ansiEscapeCodes, '');
 };
 
@@ -27,7 +26,7 @@ const analyzeFilesInDirectory = async (directoryPath, outputPath) => {
 				continue;
 			}
 
-			const fileContent = await fs.readFile(filePath, 'utf-8');
+			const fileContent = await fs.readFile(filePath, 'utf8');
 			const lines = fileContent.toString().split(/\n/);
 
 			const lineLengths = lines.map((line) => stripAnsi(line).length);

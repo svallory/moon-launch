@@ -20,6 +20,8 @@ typescript:
   # to moon's `.moon/cache` directory.
   routeOutDirToCache: false
 
+  syncProjectReferences: false
+
 # Configures Node.js within the toolchain.
 node:
   # The version to use. Must be a semantic version that includes major, minor, and patch.

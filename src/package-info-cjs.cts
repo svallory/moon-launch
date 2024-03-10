@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { readJSONSync } from 'fs-extra';
 
 // @ts-ignore
-const filename = __filename || fileURLToPath(import.meta.url);
+const filename = __filename || fileURLToPath(__filename);
 
 export const PACKAGE_ROOT = path.resolve(path.basename(filename), '..');
 

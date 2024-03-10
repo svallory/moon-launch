@@ -2,8 +2,8 @@
 import * as path from 'node:path';
 import { defineCommand, runMain } from 'citty';
 import { packageJson } from 'parent-package-json-ts';
-import { showBanner } from './banner';
-import * as steps from '.';
+import { showBanner } from './banner.js';
+import * as steps from './steps.js';
 
 const pkg = packageJson()!;
 

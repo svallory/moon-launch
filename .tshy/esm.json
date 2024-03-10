@@ -1,0 +1,14 @@
+{
+  "extends": "./build.json",
+  "include": [
+    "../src/**/*.ts",
+    "../src/**/*.mts",
+    "../src/**/*.tsx"
+  ],
+  "exclude": [
+    ".././src/package-info-cjs.cts"
+  ],
+  "compilerOptions": {
+    "outDir": "../.tshy-build/esm"
+  }
+}

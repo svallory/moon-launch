@@ -1,16 +1,25 @@
 {
-  "extends": [
-    "./tsconfig.options.json"
-    "tsconfig-moon/tsconfig.json",
-  ],
   "compilerOptions": {
-    "rootDir": "."
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "inlineSources": true,
+    "jsx": "react",
+    "module": "CommonJS",
+    "moduleResolution": "Node10",
+    "noUncheckedIndexedAccess": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2022",
+    "rootDir": "./src",
+    "sourceRoot": "./src",
+    "outDir": "./dist",
+    "plugins": []
   },
-  "files": [],
   "include": [
-    "src/**/*",
-    "src/**/*.json",
-    "tests/**/*",
-    "types/**/*"
+    "src"
   ]
 }

@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import * as ascii from './ascii';
-import { PACKAGE_ROOT } from './package-info';
+import * as ascii from './ascii/index.js';
+import { PACKAGE_ROOT } from './package-info.js';
 
 interface WidthItem {
 	width: number;
