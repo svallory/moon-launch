@@ -1,0 +1,14 @@
+---
+to: .moon/tasks/tag-{{ __template | trim_start_matches(pat="./") | trim_start_matches(pat="tags/") }}.yml
+---
+$schema: 'https://moonrepo.dev/schemas/tasks.json'
+
+fileGroups:
+  sources: []
+  tests: []
+  other: []
+
+tasks:
+  <bin>:
+    command: '<bin>'
+    local: true

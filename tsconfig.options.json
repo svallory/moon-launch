@@ -1,0 +1,35 @@
+// https://www.npmjs.com/package/tsconfig-moon
+{
+  "extends": "@tokilabs/tsconfig/base.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ESNext",
+    "allowJs": true,
+    "declaration": true,
+    // "declarationMap": true,
+    // "emitDeclarationOnly": false,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "incremental": true,
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "noEmit": false,
+    "noEmitOnError": true,
+    "resolveJsonModule": true,
+    // match output dir to input dir. e.g. dist/index instead of dist/src/index
+    "outDir": "./dist",
+    "rootDir": "./src",
+    // significant perf increase by skipping checking .d.ts files, particularly those in node_modules. Recommended by TS
+    "skipLibCheck": true,
+    // output .js.map sourcemap files for consumers (true in moon)
+    "sourceMap": true
+  },
+  "include": [
+    "src/**/*",
+    "src/**/*.json",
+    "types/**/*"
+  ]
+}

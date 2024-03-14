@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "@ci:test": "vitest run --coverage --no-color",
+    "clean:vitest": "rm -rf coverage node_modules/.vitest",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.2",
+    "@vitest/coverage-v8": "^1.3.1",
+    {% if addEslintPlugin -%}"eslint-plugin-testing-library": "^6.2.0",{%endif-%}
+    "vitest": "^1.3.1"
+  }
+}

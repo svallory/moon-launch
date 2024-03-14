@@ -1,7 +1,7 @@
-import fs from 'node:fs';
 import path from 'node:path';
 import * as ascii from './ascii/index.js';
 import { PACKAGE_ROOT } from './package-info.js';
+import { readFileSync } from 'fs-extra';
 
 interface WidthItem {
 	width: number;
@@ -69,7 +69,7 @@ export function showBanner() {
 		: undefined;
 
 	if (banner && title) {
-		const bannerLines: string = fs.readFileSync(path.join(PACKAGE_ROOT, banner.path), {
+		const bannerLines: string = readFileSync(path.join(PACKAGE_ROOT, banner.path), {
 			encoding: 'utf8',
 		});
 

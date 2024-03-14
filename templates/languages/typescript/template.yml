@@ -1,0 +1,14 @@
+$schema: https://moonrepo.dev/schemas/template.json
+
+title: "Language: TypeScript"
+
+description: Configures typescript support in a monorepo
+
+extends:
+  - "tags/typescript"
+  - "toolchains"
+
+variables:
+  __template:
+    type: string
+    default: "languages:typescript"

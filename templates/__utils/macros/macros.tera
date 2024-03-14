@@ -1,0 +1,31 @@
+{% macro yaml_arr(name="", items=false, exclude="none", prefix="  - ") -%}
+{%   if name and items -%}
+      {{name}}:
+{%   endif -%}
+{%   for item in items -%}
+{%     if item != "" and item != exclude -%}
+{{       item | indent(first=true, prefix=prefix) }}
+{%     endif -%}
+{%   endfor -%}
+{% endmacro yaml_arr -%}
+
+{% macro json_arr(name="", items=false, exclude="none", prefix="  ") -%}
+{%   if name and items -%}
+      {{'"' ~ name ~ '": ['}}
+{%   endif -%}
+
+{%   for item in items -%}
+{%     if item != "" and item != exclude -%}
+{{       item | json_encode(pretty=true) | indent(first=true, prefix=prefix) -}}
+{%       if item != items | last -%}
+            ,
+{%       endif -%}
+{%     endif -%}
+{%   endfor -%}
+
+{%   if name and items -%}
+{{     "]" }}
+{%   endif -%}
+{% endmacro json_arr -%}
+
+{% block content -%}{% endblock content -%}

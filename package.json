@@ -1,9 +1,9 @@
 {
   "name": "@space/moon-launch",
   "description": "Small CLI to create monorepos using moon",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "license": "MIT",
-  "type": "commonjs",
+  "type": "module",
   "keywords": [
     "moon",
     "moonrepo",
@@ -15,11 +15,13 @@
   "author": "Saulo Vallory",
   "scripts": {
     "build": "moon run :build",
+    "build:ts": "tsc -p ./.tshy/commonjs --module commonjs --moduleResolution node10",
     "check": "moon run :typecheck :test :lint :validate",
-    "lint": "moon run :lint",
     "clean": "moon run :clean",
+    "deps": "pnpm update -i --latest -r",
     "dev": "moon run :dev",
     "generate-banners-json": "node ./scripts/generate-banners-json.js",
+    "lint": "moon run :lint",
     "pack": "moon run :pack",
     "prepublish": "moon run --concurrency 1 :pack :typecheck :test :lint :validate",
     "release": "echo 'Customize your own release script!'",
@@ -34,41 +36,31 @@
     "type": "git",
     "url": "git+https://github.com/svallory/moon-launch.git"
   },
-  "packemon": {
-    "inputs": {
-      "bin": "bin.ts",
-      "index": "index.ts"
-    },
-    "format": [
-      "lib",
-      "mjs",
-      "cjs"
-    ],
-    "platform": "node"
-  },
   "dependencies": {
+    "@tokilabs/tsconfig": "^1.0.1",
     "citty": "^0.1.6",
     "fs-extra": "^11.2.0",
-    "parent-package-json-ts": "^0.2.0"
+    "ts-orc": "1.12.0-orc.1"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.11.25",
-    "@typescript-eslint/parser": "^7.1.1",
+    "@types/node": "^20.11.27",
+    "@typescript-eslint/parser": "^7.2.0",
     "@vitest/spy": "^1.3.1",
     "babel-preset-moon": "^2.0.15",
     "eslint": "^8.57.0",
     "eslint-config-moon": "^2.1.2",
+    "packemon": "^4.0.1",
     "prettier": "^3.2.5",
     "prettier-config-moon": "^1.1.2",
     "prettier-eslint": "^16.3.0",
     "tsconfig-moon": "^1.3.0",
-    "tshy": "^1.11.1",
     "typescript": "^5.4.2",
     "vitest": "^1.3.1"
   },
+  "packageManager": "pnpm@8.15.4",
   "bin": {
-    "moon-launch": "lib/bin.js"
+    "moon-launch": "dist/bin.js"
   },
   "files": [
     "banners/*",
@@ -77,33 +69,34 @@
     "src/**/*",
     "templates/**/*"
   ],
-  "packageManager": "pnpm@8.15.4",
   "exports": {
     "./package.json": "./package.json",
-    "./*": {
-      "import": {
-        "types": "./mjs/*.d.ts",
-        "default": "./mjs/*.mjs"
-      },
-      "require": {
-        "types": "./lib/*.d.ts",
-        "default": "./lib/*.js"
-      }
-    },
     ".": {
       "import": {
-        "types": "./mjs/index.d.ts",
-        "default": "./mjs/index.mjs"
-      },
-      "require": {
-        "types": "./lib/index.d.ts",
-        "default": "./lib/index.js"
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
       }
     }
   },
   "engines": {
     "node": "20.11.1"
   },
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts"
+  "packemon": {
+    "inputs": {
+      "bin": "bin.ts",
+      "index": "index.ts"
+    },
+    "format": [],
+    "platform": "node"
+  },
+  "tshy": {
+    "project": "./tsconfig.build.json",
+    "dialects": [
+      "esm"
+    ],
+    "exports": {
+      "./package.json": "./package.json",
+      ".": "./src/index.ts"
+    }
+  }
 }

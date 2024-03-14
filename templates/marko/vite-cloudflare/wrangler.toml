@@ -1,0 +1,12 @@
+
+name = "marko-cloudflare"
+main = "dist/worker.js"
+workers_dev = true
+compatibility_date = "2022-01-06"
+
+[site]
+bucket = "./dist"
+include = ["assets/**"]
+
+[build]
+command = "npm run build"

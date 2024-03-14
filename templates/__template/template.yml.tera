@@ -1,0 +1,51 @@
+{% extends "_partials/macros" %}
+---
+force: {{__replace_all}}
+---
+{% block content -%}
+{%   set id = dest_rel_dir | trim_start_matches(pat="./") | trim_start_matches(pat="templates/") -%}
+
+{%   if not title -%}
+{%    set title = id | replace(from="/", to=" > ") -%}
+{%   endif -%}
+
+# https://moonrepo.dev/docs/config/template
+$schema: 'https://moonrepo.dev/schemas/template.json'
+
+# REQUIRED: Name of the template in a human readable format.
+title: "{{ title }}"
+
+# REQUIRED: Description of what the template is for and other relevant information.
+description: "{{description}}"
+
+extends:
+  # Adds the ability to debug the code generation
+  # When `debug` is set to true, a `__generation-info-[template.id].json` file
+  # is generated at the root of DEST
+  - "__utils/debug"
+{{  self::yaml_arr(name="", items=extends) }}
+
+variables:
+  # The template path relative to base-dir
+  # This variable can be used to determine the template being executed
+  # It is useful for nesting templates like in toolchains and toolchains/typescript
+  __template:
+    type: string
+    default: {{ dest_rel_dir | replace (from=base_dir, to="") }}
+
+  # An id to identify this template
+  # This variable can be used to determine the template being executed
+  # It is useful for nesting templates like in toolchains and toolchains/typescript
+  __template_id:
+    type: string
+    default: {{ id }}
+
+  # Replace all files without asking for permission
+  __replace_all:
+    type: boolean
+    default: false
+    
+  debug:
+    type: boolean
+    default: false
+{% endblock content -%}

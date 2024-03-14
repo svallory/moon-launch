@@ -1,4 +1,0 @@
-$schema: https://moonrepo.dev/schemas/template.json
-
-title: 'create'
-description: 'Creates a new monorepo using moon and proto'

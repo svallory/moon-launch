@@ -1,0 +1,6 @@
+---
+force: true
+skip: {% if debug %}false{% else %}true{%endif%}
+to: {{ "__generation-info-"}}{{ __template_id | slugify }}{{ ".json" }}
+---
+{{ __tera_context }}

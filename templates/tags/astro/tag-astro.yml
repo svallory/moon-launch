@@ -1,0 +1,47 @@
+$schema: 'https://moonrepo.dev/schemas/tasks.json'
+
+# File originally from:
+# extends: 'https://raw.githubusercontent.com/moonrepo/moon-configs/master/javascript/astro/tasks.yml'
+
+fileGroups:
+  astro:
+    - 'public/**/*'
+    - 'src/**/*'
+    - 'astro.config.*'
+  sources: []
+  tests:
+    - 'tests/**/*'
+
+tasks:
+  # Catch-all for any `astro` command
+  astro:
+    command: 'astro'
+    local: true
+
+  # Build the application
+  build:
+    command: 'astro build'
+    inputs:
+      - '@group(astro)'
+      - '@group(sources)'
+    outputs:
+      - 'dist'
+
+  # Typecheck `.astro` files
+  check:
+    command: 'astro check'
+    inputs:
+      - '@group(astro)'
+      - '@group(sources)'
+
+  # Run the development server
+  dev:
+    command: 'astro dev'
+    local: true
+
+  # Serve the built application
+  preview:
+    command: 'astro preview'
+    deps:
+      - 'build'
+    local: true

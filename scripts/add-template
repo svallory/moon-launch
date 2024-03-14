@@ -1,0 +1,64 @@
+#!/usr/bin/env zsh
+
+# Function to display help/usage information
+show_help() {
+  cat << EOF
+Usage:
+  add-template PATH [OPTIONS] [-- TEMPLATE_VARS...]
+  
+Where:
+  PATH              The path to the new template. This argument is required.
+
+Options:
+  -h, --help        Show this help message and exit.
+
+  OPTIONS           Arguments and options for 'moon generate'. These should
+                    come before the '--'. Any valid option for 'moon generate'
+                    can be included here.
+
+  TEMPLATE_VARS...  Template variables to pass into the template. These are
+                    optional and should be passed after a '--' separator.
+                    Use this separator when specifying template variables or
+                    any options that are intended for the template itself.
+
+Examples:
+  add-template my/new-template --defaults
+  add-template my/other-template --defaults -- --id "other:template"
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+Help for 'moon generate'
+
+EOF
+  moon generate --help
+}
+
+# Get the full path to the project root
+ROOT=$(dirname "$(dirname "$0")")
+
+# Check for help argument or no arguments
+if [[ "$1" == "-h" || "$1" == "--help" || "$#" -eq 0 ]]; then
+  show_help
+  exit 0
+fi
+
+# Validate the 1st argument (PATH) is provided and not empty
+if [[ -z "$1" ]]; then
+  echo "Error: PATH argument is required."
+  show_help
+  exit 1
+fi
+
+echo ">> moon generate __template \"templates/$1\" ${(@)argv[2,-1]} "
+
+source "${ROOT}/scripts/template-functions.sh"
+
+# Check if at least one argument is provided (the PATH)
+if [[ $# -lt 1 ]]; then
+  echo "Error: A PATH argument is required."
+  # Optionally show help or usage information here
+  exit 1
+fi
+
+# Extract the first argument as the PATH and pass the rest to the function
+execute_moon_generate __template "$1" "${@:2}"

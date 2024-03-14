@@ -1,0 +1,34 @@
+# https://moonrepo.dev/docs/config/template
+$schema: 'https://moonrepo.dev/schemas/template.json'
+
+# REQUIRED: Name of the template in a human readable format.
+title: "Tag: packemon"
+
+# REQUIRED: Description of what the template is for and other relevant information.
+description: "Creates a tag-packemon file with tasks for packemon"
+
+extends:
+  # Adds the ability to debug the code generation
+  # When `debug` is set to true, a `__generation-info-[template.id].json` file
+  # is generated at the root of DEST
+  - "__utils/debug"
+
+variables:
+  # The template path relative to base-dir
+  # This variable can be used to determine the template being executed
+  # It is useful for nesting templates like in toolchains and toolchains/typescript
+  __template:
+    type: string
+    default: tags/packemon
+
+  # An id to identify this template
+  # This variable can be used to determine the template being executed
+  # It is useful for nesting templates like in toolchains and toolchains/typescript
+  __template_id:
+    type: string
+    default: tags/packemon
+
+  # Replace all files without asking for permission
+  __replace_all:
+    type: boolean
+    default: false

@@ -1,0 +1,28 @@
+---
+to: .moon/template.base.yml
+---
+# https://moonrepo.dev/docs/config/toolchain
+$schema: 'https://moonrepo.dev/schemas/toolchain.json'
+{#
+  # Note: Tera does NOT support this:
+  #################################
+  {% for tool in tools -%}
+  {% include "partials/tools/" ~ tool ~ ".yml" -%}
+  {% endif -%}
+############## -#}
+
+{% if "bun" in tools %}
+{% include "partials/tools/bun.yml" %}
+{% endif -%}
+
+{% if "deno" in tools %}
+{% include "partials/tools/deno.yml" %}
+{% endif -%}
+
+{% if "node" in tools %}
+{% include "partials/tools/node.yml" %}
+{% endif -%}
+
+{% if "typescript" in tools %}
+{% include "partials/tools/typescript.yml" %}
+{% endif -%}

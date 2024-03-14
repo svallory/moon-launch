@@ -1,0 +1,87 @@
+# https://moonrepo.dev/docs/config/template
+$schema: 'https://moonrepo.dev/schemas/template.json'
+
+# REQUIRED: Name of the template in a human readable format.
+title: "The template Template:"
+
+# REQUIRED: Description of what the template is for and other relevant information.
+description: a template for generating templates
+
+extends:
+  - "__utils/debug"
+
+variables:
+  debug:
+    type: boolean
+    default: false
+
+  __template:
+    type: string
+    default: "__template"
+
+  __template_id:
+    type: string
+    default: "meta:template"
+
+  __replace_all:
+    type: boolean
+    default: true
+
+  add_sample:
+    type: boolean
+    default: false
+  
+  # The value of __template_id in the generated template
+  id:
+    type: string
+    default: ""
+    required: false
+
+  base_dir:
+    type: string
+    default: "templates/"
+    required: true
+
+  title:
+    type: 'string'
+    default: ''
+    required: false
+
+  description:
+    prompt: 'Description'
+    type: 'string'
+    default: 'Set some description here'
+    required: false
+
+  extends:
+    prompt: 'Should this template extend others?'
+    type: 'enum'
+    multiple: true
+    default: ''
+    values:
+      - label: none
+        value: ""
+
+      - label: languages > typescript
+        value: languages/typescript
+
+      - label: tags > eslint
+        value: tags/eslint
+
+      - label: tags > packemon
+        value: tags/packemon
+
+      - label: tags > prettier
+        value: tags/prettier
+
+      - label: tags > typescript
+        value: tags/typescript
+
+      - label: tags > vitest
+        value: tags/vitest
+
+      - label: toolchains > node
+        value: toolchains/node
+        
+      - label: toolchains > typescript
+        value: toolchains/typescript

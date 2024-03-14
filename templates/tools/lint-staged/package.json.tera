@@ -1,0 +1,11 @@
+{% extends "_partials/macros" %}
+---
+force: {{__replace_all}}
+---
+{% block content -%}
+{
+  "devDependencies": {
+    "lint-staged": "^15.2.2"
+  }
+}
+{% endblock content %}

@@ -1,0 +1,23 @@
+$schema: https://moonrepo.dev/schemas/template.json
+
+title: "Setup toolchains"
+
+description: "Add toolchain config for the selected toolchains"
+
+destination: '.moon/'
+
+variables:
+  __template:
+    type: string
+    default: "toolchains"
+  versionManager:
+    type: string
+  tools:
+    prompt: "Select the toolchains to configure"
+    type: enum
+    multiple: true
+    values:
+      - typescript
+      - node
+      - bun
+      - deno

@@ -1,0 +1,39 @@
+
+__snapshots__
+.cache/
+.vscode
+build/
+CHANGELOG.md
+cjs/
+coverage/
+dist/
+dts/
+esm/
+lib/
+mjs/
+node_modules/
+package-lock.json
+umd/
+
+*.d.ts
+*.d.cts
+*.d.mts
+*.min.js
+*.map
+*.snap
+
+# Vue files are formatted via ESLint
+*.vue
+
+# Next
+.next/
+
+# Nuxt
+.nuxt/
+.output/
+
+# Svelte
+.svelte-kit/
+
+# Angular
+.angular

@@ -1,0 +1,25 @@
+# https://moonrepo.dev/docs/config/template
+$schema: 'https://moonrepo.dev/schemas/template.json'
+
+# REQUIRED: Name of the template in a human readable format.
+title: Define a title here
+
+# REQUIRED: Description of what the template is for and other relevant information.
+description: Set some description
+
+variables:
+  # When true, generates a debug-[template-name].json file with debug info
+  debug:
+    type: boolean
+    default: true
+
+  __template:
+    type: string
+    default: __utils/debug
+
+  # An id to identify this template
+  # This variable can be used to determine the template being executed
+  # It is useful for nesting templates like in toolchains and toolchains/typescript
+  __template_id:
+    type: string
+    default: "utils:debug"

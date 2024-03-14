@@ -1,7 +1,16 @@
-title: 'library config'
+title: '🌚 Moon Monorepo Template by Moon Launch 🚀'
+
 description: |
-  Adds a .moon/tasks/library.yml
+  Launch in moon repo in T-30 seconds
+
+  NOTE: after the generation is completed,
+  you'll need to run the script below to finish the setup.
+
+  cd DEST
+  ./finish-setup.sh
+
 destination: '.'
+
 variables:
   platform:
     prompt: 'What types of project should the monorepo be prepared to have?'

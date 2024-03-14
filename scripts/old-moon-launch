@@ -1,0 +1,81 @@
+#!/bin/bash
+
+# Check if `proto` is installed, if not, ask for user confirmation to install
+if ! command -v proto &>/dev/null; then
+    echo "Proto is not installed. Do you want to install Proto? (y/N)"
+    read -r user_confirmation
+    if [[ $user_confirmation == [yY] ]]; then
+        # Command to install Proto
+        echo "Installing Proto..."
+        curl -fsSL https://moonrepo.dev/install/proto.sh | bash
+    else
+        echo >&2 "Proto is required to proceed. Installation cancelled."
+        exit 1
+    fi
+fi
+
+# Check if `moon` is installed globally, if not, ask for user confirmation to install
+if ! command -v moon &>/dev/null; then
+    echo "Moon is not installed globally. Do you want to install Moon globally? (y/N)"
+    read -r user_confirmation
+    if [[ $user_confirmation == [yY] ]]; then
+        # Command to install Moon globally
+        echo "Installing Moon globally..."
+        proto tool add --global moon "source:https://raw.githubusercontent.com/moonrepo/moon/master/proto-plugin.toml"
+        proto install moon
+    fi
+fi
+
+# Add moon locally
+proto tool add moon "source:https://raw.githubusercontent.com/moonrepo/moon/master/proto-plugin.toml"
+PROTO_PIN_LATEST=local proto install --pin moon
+
+# Initialize the project
+moon init
+
+git status
+
+# Commit the initialization
+echo "Do you want to commit all modified files with the message 'Initial moon setup'? (y/N)"
+read -r user_confirmation
+
+if [[ $user_confirmation == [yY] ]]; then
+  git add -u
+  git commit -m 'Initial moon setup'
+fi
+
+# Define the local function
+moon_migrate_all() {
+    while IFS= read -r line; do
+        project_name=${line%%|*}
+        project_name=${project_name//[[:blank:]]/}
+        echo moon migrate from-package-json "$project_name"
+    done < <(moon query projects)
+}
+
+# Use the function to print all the migration commands and store them in an array
+migration_commands=()
+while IFS= read -r line; do
+    migration_commands+=("$line")
+done < <(moon_migrate_all)
+
+# Display the commands to the user
+printf '%s
+' "${migration_commands[@]}"
+
+# Ask the user for confirmation to proceed
+echo "Do you want to execute the commands listed above? (y/N)"
+read -r user_confirmation
+
+# If the user confirms, execute each command
+if [[ $user_confirmation == [yY] ]]; then
+    for cmd in "${migration_commands[@]}"; do
+        echo "Executing: $cmd"
+        eval "$cmd"
+        git stash --include-untracked
+    done
+    # Unstash changes after all are done
+    git stash pop
+else
+    echo "Migration cancelled by user."
+fi

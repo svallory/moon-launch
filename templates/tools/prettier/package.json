@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "prettier:write": "prettier . --write",
+    "prettier:check": "prettier . --check"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.2.5",
+    "prettier-plugin-packagejson": "^2.4.12"
+  }
+}

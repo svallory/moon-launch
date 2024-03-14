@@ -30,6 +30,7 @@
     "tagit",
     "tera",
     "tokilabs",
+    "tsbuildinfo",
     "typecheck",
     "vite",
     "vitest"
@@ -42,6 +43,8 @@
   "references.preferredLocation": "peek",
   "files.associations": {
     "*.yml.tera": "jinja-yaml",
+    "*.md.tera": "jinja-md",
+    "*.json.tera": "jinja-json",
     "*.tera": "jinja"
   },
   "typescript.tsdk": "node_modules/typescript/lib"

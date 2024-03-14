@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "storybook": "storybook dev"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "8.0.0",
+    "@storybook/addon-essentials": "^8.0.0",
+    "@storybook/addon-interactions": "^8.0.0"
+  }
+}

@@ -1,12 +1,10 @@
-/* eslint-disable sort-keys */
 import * as path from 'node:path';
 import { defineCommand, runMain } from 'citty';
-import { packageJson } from 'parent-package-json-ts';
+import { pkg } from 'ts-orc/tasks';
 import { showBanner } from './banner.js';
 import * as steps from './steps.js';
 
-const pkg = packageJson()!;
-
+/* eslint-disable sort-keys */
 const main = defineCommand({
 	meta: {
 		name: 'moon-launch',

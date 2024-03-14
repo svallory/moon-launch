@@ -1,0 +1,6 @@
+{
+  "packemon": {
+    "format": "mjs",
+    "platform": "node"
+  }
+}
